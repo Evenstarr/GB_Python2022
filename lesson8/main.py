@@ -1,9 +1,8 @@
-# m = input("Введите выражение: ").split()
-# m = '12 + 15'.split()
-# m = '12 + 15 - 4'.split()
-m = '12 - 4 * 2 + 6 / 3'.split()
+# s = input("Введите выражение: ").split()
+s = '11 * 30 * 2 - 14  + 5 + 10 * 3 * 10'.split()
+# s = '12 - 4 * 2 + 6 / 3'.split()
 
-m2 = []
+print(s)
 
 
 def calc(val1, val2, operation):
@@ -18,21 +17,20 @@ def calc(val1, val2, operation):
             return val1 / val2
 
 
-mult_arr = []
-i = 0
-while i < len(m):
-    if m[i] == "*" or m[i] == "/":
-        result = calc(int(m[i - 1]), int(m[i + 1]), m[i])
-        if mult_arr:
-            mult_arr.pop()
-        mult_arr.append(result)
-        i += 1
+while len(s) > 1:
+    if '/' in s or '*' in s:
+        for i in range(len(s)):
+            if s[i] == '/' or s[i] == '*':
+                s[i] = calc(int(s[i-1]), int(s[i+1]), s[i])
+                s.pop(i-1)
+                s.pop(i)
+                break
     else:
-        mult_arr.append(m[i])
-    i += 1
+        for i in range(len(s)):
+            if s[i] == '+' or s[i] == '-':
+                s[i] = calc(int(s[i-1]), int(s[i+1]), s[i])
+                s.pop(i-1)
+                s.pop(i)
+                break
 
-res = int(mult_arr[0])
-for i in range(1, len(mult_arr) - 1, 2):
-    res = calc(res, int(mult_arr[i + 1]), mult_arr[i])
-
-print(res)
+print(s[0])
