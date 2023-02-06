@@ -1,8 +1,9 @@
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
 from bot_commans import *
+from settings import token
 
-app = ApplicationBuilder().token("6018411940:AAE_x7nyM3X3C1EistLXauYhG-Nu3ivEXE4").build()
+app = ApplicationBuilder().token(token).build()
 
 app.add_handler(CommandHandler("start", start_command))
 app.add_handler(CommandHandler("hi", hi_command))
